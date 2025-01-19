@@ -10,7 +10,7 @@ __pycache__/
 .Python
 build/
 develop-eggs/
-dist/
+dist/ƒ
 downloads/
 eggs/
 .eggs/
@@ -129,7 +129,6 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
 .venv
 env/
 venv/
@@ -173,9 +172,6 @@ cython_debug/
 
 # member-api log files
 *member-api.log*
-
-# member-api env files
-.env
 
 # member-api python virtual env files
 .venv
