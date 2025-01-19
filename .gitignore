@@ -169,3 +169,15 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# member-api log files
+*member-api.log*
+
+# member-api env files
+.env
+
+# member-api python virtual env files
+.venv
+
+# member-api db files
+*.db
