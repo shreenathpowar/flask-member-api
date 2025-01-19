@@ -1,6 +1,5 @@
 import sqlite3
 import datetime
-from flask import current_app as app
 from app.lib.logger import Logger
 
 
@@ -215,3 +214,21 @@ class AdminDB(SQLDB):
             self.log.error(f'Failed `AdminDB` `get_info` function')
             self.log.error(f'Error: {error}, ID: {id}')
             return None
+
+class MemberDB(SQLDB):
+    def __init__(self, dbfile, sql_file):
+        super().__init__(dbfile)
+        self.table = 'members'
+        self.sql_file = sql_file
+
+        if not self.table_exists(self.table):
+            self.create_table(self.sql_file)
+
+class MembershipDB(SQLDB):
+    def __init__(self, dbfile, sql_file):
+        super().__init__(dbfile)
+        self.table = 'memberships'
+        self.sql_file = sql_file
+
+        if not self.table_exists(self.table):
+            self.create_table(self.sql_file)

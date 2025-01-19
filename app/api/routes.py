@@ -6,7 +6,11 @@ from flask import (
     current_app as app
 )
 from werkzeug.security import generate_password_hash
+
 from app.lib.admin import Admin
+from app.lib.member import Member
+from app.lib.membership import Membership
+
 
 ################## decorators #################
 def protect(f):
@@ -14,7 +18,7 @@ def protect(f):
     decorator to protect admin routes
     '''
     @wraps(f)
-    def decorator(*args, **kwargs):
+    def wrapper(*args, **kwargs):
         username = request.authorization.get('username')
         password = request.authorization.get('password')
         dbfile = app.config['SQLITE_DATABASE_URI']
@@ -24,7 +28,7 @@ def protect(f):
             kwargs.update({'dbaccess': dbaccess})
             return f(*args, **kwargs)
         return jsonify({ 'message': 'Unuthorized' }), 403
-    return decorator
+    return wrapper
 
 def get_db_access(db=[]):
     '''
@@ -32,7 +36,7 @@ def get_db_access(db=[]):
     '''
     def db_access(f):
         @wraps(f)
-        def decorator(*args, **kwargs):
+        def wrapper(*args, **kwargs):
             dbaccess = kwargs.get('dbaccess', {})
             dbfile = app.config['SQLITE_DATABASE_URI']
             for _db in db:
@@ -40,9 +44,14 @@ def get_db_access(db=[]):
                 # always keep protect second in chain for: only get db access or proceed if admin is athonticated
                 if _db == 'admin' and not dbaccess.get(_db, None):
                     dbaccess.update({ _db: Admin(dbfile, app.config['ADMINS_SQL_FILE']) })
+                elif _db == 'member':
+                    dbaccess.update({ _db: Member(dbfile, app.config['MEMBERS_SQL_FILE']) })
+                elif _db == 'membership':
+                    dbaccess.update({ _db: Membership(dbfile, app.config['MEMBERSHIPS_SQL_FILE']) })
+
             kwargs.update({'dbaccess': dbaccess})
             return f(*args, **kwargs)
-        return decorator
+        return wrapper
     return db_access
 ############# end decorators ##############
 
