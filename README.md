@@ -14,7 +14,7 @@ So the Basic idea of this API is we have Admins and Members, each member will ha
 ## Admin
 
 Admin will have following details
-id | name | username | emailid | password | active status | creation date | update date
+ID | Name | Username | Email ID | Password | Active Status | Creation Date | Update Date
 ---| --- | --- | --- | --- | --- | --- | ---
 1 | Shreenath Powar | admin | admin@email.com | ***** | 1 | 2025 Jan 20, 21:25:06 | 2025 Jan 20, 21:25:06
 
@@ -33,7 +33,7 @@ Admin can:
 ## Member
 
 Member will have following details
-id | name | username | emailid | password | active status | creation date | update date
+ID | Name | Username | Email ID | Password | Active Status | Creation Date | Update Date
 ---| --- | --- | --- | --- | --- | --- | ---
 1 | Shreenath Powar | sheenathpowar | shreenathpowar@email.com | ***** | 1 | 2025 Jan 20, 21:25:06 | 2025 Jan 20, 21:25:06
 
@@ -50,6 +50,6 @@ Admins can modify them and create new memberships and delete current.
 
 membership will have following details
 
-id | name | add level | max resolution | active status | creation date | update date
+ID | Name | Adds Level | Max Resolution | Active Status | Creation Date | Update Date
 ---| --- | --- | --- | --- | --- | --- 
 1 | Basic | 2 | 720p | 1 | 2025 Jan 20, 21:25:06 | 2025 Jan 20, 21:25:06
